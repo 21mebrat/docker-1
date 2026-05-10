@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: maytot/book-frontend:v1
+    image: mahtot21/docker-two-frontend:v1
 
     container_name: frontend_prod
 
@@ -10,7 +10,7 @@ services:
     restart: always
 
   backend:
-    image: maytot/book-backend:v1
+    image: mahtot21/docker-two-backend:v1
 
     container_name: backend_prod
 
