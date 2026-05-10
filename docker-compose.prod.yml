@@ -1,0 +1,33 @@
+services:
+  frontend:
+    image: maytot/book-frontend:v1
+
+    container_name: frontend_prod
+
+    ports:
+      - "80:80"
+
+    restart: always
+
+  backend:
+    image: maytot/book-backend:v1
+
+    container_name: backend_prod
+
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - ./backend/.env
+
+    restart: always
+
+  db:
+    image: mongo:6
+
+    container_name: mongo_prod
+
+    restart: always
+
+    volumes:
+      - mongo_data:/data/db

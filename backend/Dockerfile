@@ -1,11 +1,23 @@
-FROM node:25-alpine3.22
+# =========================
+# Production Backend Image
+# =========================
 
+FROM node:22-alpine
+
+# Create app directory
 WORKDIR /app
 
-COPY  package.json .
+# Copy package files first for caching
+COPY package*.json ./
 
-RUN npm install
+# Install only production dependencies
+RUN npm install --omit=dev
 
-COPY  . .
+# Copy source code
+COPY . .
 
-CMD [ "node","index.js"]
+# Expose backend port
+EXPOSE 5000
+
+# Start application
+CMD ["node", "server.js"]
