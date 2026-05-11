@@ -15,7 +15,7 @@ function App() {
   const register = async () => {
     try {
       console.log("Registering user with data:", form);
-   const response =  await axios.post("http://localhost:5000/", form);
+   const response =  await axios.post("http://54.159.5.211:5000", form);
    console.log(response);
     alert("User registered!");
     } catch (error) {
