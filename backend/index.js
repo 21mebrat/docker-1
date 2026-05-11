@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: "http://54.159.5.211:5000"
+  origin: "http://54.159.5.211"
 }));
 app.use(express.json());
 // Simple route
