@@ -32,8 +32,8 @@ app.post("/", (req, res) => {
 });
 app.get("/",(_,res)=>res.send("Hi it works."))
 
-app.listen(PORT, () => {
-  connectDb()
-      .then(() => console.log("Connected to MongoDB"))  
+app.listen(PORT, async() => {
+ await  connectDb()
+
   console.log(`Server running on port ${PORT}`);
 });
