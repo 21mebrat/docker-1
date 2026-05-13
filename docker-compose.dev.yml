@@ -4,6 +4,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
 
+    image: mahtot21/docker-two-frontend:v2
+
     container_name: frontend_dev
 
     ports:
@@ -18,10 +20,13 @@ services:
 
     restart: unless-stopped
 
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+
+    image: mahtot21/docker-two-backend:v2
 
     container_name: backend_dev
 
@@ -36,6 +41,7 @@ services:
       - ./backend/.env
 
     restart: unless-stopped
+
 
   db:
     ports:
