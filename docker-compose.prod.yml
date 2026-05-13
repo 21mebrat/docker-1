@@ -40,6 +40,11 @@ services:
     container_name: frontend_prod
     ports:
       - "80:80"
+      - "443:443"
+
+    volumes:
+      - /etc/letsencrypt/live/docker-2.duckdns.org/fullchain.pem:/etc/ssl/fullchain.pem:ro
+      - /etc/letsencrypt/live/docker-2.duckdns.org/privkey.pem:/etc/ssl/privkey.pem:ro
     restart: unless-stopped
     networks:
       - app_network
