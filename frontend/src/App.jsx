@@ -18,17 +18,11 @@ function App() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        "http://54.159.5.211:5000/users",
-        form
-      );
-
-      console.log(response.data);
+       await axios.post("/api/users", form);
       alert("User registered successfully!");
       setForm({ name: "", email: "", password: "" });
 
     } catch (error) {
-      console.error("Error registering user:", error);
       alert("Error registering user");
     } finally {
       setLoading(false);

@@ -1,34 +1,71 @@
+# services:
+#   frontend:
+#     image: mahtot21/docker-two-frontend:v2
+
+#     container_name: frontend_prod
+
+#     ports:
+#       - "80:80"
+
+#     restart: always
+
+#   backend:
+
+#     image: mahtot21/docker-two-backend:v2
+
+#     container_name: backend_prod
+
+#     env_file:
+#       - ./backend/.env
+
+#     restart: always
+
+#   db:
+#     image: mongo:6
+
+#     container_name: mongo_prod
+
+#     restart: always
+
+#     volumes:
+#       - mongo_data:/data/db
+
+
 services:
   frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: mahtot21/docker-two-frontend:v2
-
     container_name: frontend_prod
-
     ports:
       - "80:80"
-
-    restart: always
+    restart: unless-stopped
+    networks:
+      - app_network
 
   backend:
-
     image: mahtot21/docker-two-backend:v2
-
     container_name: backend_prod
-
-    ports:
-      - "5000:5000"
-
     env_file:
       - ./backend/.env
-
-    restart: always
+    restart: unless-stopped
+    networks:
+      - app_network
+    # ❌ NO PORTS (SECURE)
 
   db:
     image: mongo:6
-
     container_name: mongo_prod
-
-    restart: always
-
     volumes:
       - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - app_network
+    # ❌ NO PORTS
+
+volumes:
+  mongo_data:
+
+networks:
+  app_network:
